@@ -1,5 +1,6 @@
 package com.lfool.jwt.util;
 
+import com.lfool.jwt.entity.Role;
 import com.lfool.jwt.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,11 +21,11 @@ public class JwtUtil {
     public static final Key key = Keys.hmacShaKeyFor("hiypibkrkrqyygycuuynrwojoexkgubtkprnxsaarfiznwluabsnwwexseizeecc".getBytes());
 //    public static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
-    public static String createJwtToken(User user) {
+    public static String createJwtToken(User user, Role role) {
         long now = System.currentTimeMillis();
         return Jwts.builder()
                 .setId("user")
-                .claim("authorities", "all")
+                .claim("authorities", role.getRole())
                 .setSubject(String.valueOf(user.getId()))
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + 60 * 60 * 60 * 1000))

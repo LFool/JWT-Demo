@@ -1,5 +1,6 @@
 package com.lfool.jwt.util;
 
+import com.lfool.jwt.entity.Role;
 import com.lfool.jwt.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -18,9 +19,10 @@ class JwtUtilTest {
     @Test
     public void test() {
         User user = new User(1, "zs", "123456");
+        Role role = new Role(1, 1, "root");
 
         // 创建 jwt
-        String token = JwtUtil.createJwtToken(user);
+        String token = JwtUtil.createJwtToken(user, role);
         System.out.println(token);
 
         // 解析

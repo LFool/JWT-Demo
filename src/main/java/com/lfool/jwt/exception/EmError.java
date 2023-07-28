@@ -14,7 +14,8 @@ public enum EmError implements CommonError{
     TOKEN_NOT_EXIST(10001, "token 不存在，请重新登陆"),
     TOKEN_PARSER_FAIL(10002, "token 解析异常，请重新登陆"),
     USER_NOT_EXIST(10003, "用户不存在，请重新登陆"),
-    UNKNOWN_ERROR(10004, "未知错误"),
+    ROLE_NOT_ENOUGH(10004, "用户权限太低，无法访问"),
+    UNKNOWN_ERROR(10005, "未知错误"),
     ;
 
     private final int errCode;

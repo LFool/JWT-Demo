@@ -2,8 +2,10 @@ package com.lfool.jwt.controller;
 
 import com.lfool.jwt.annotation.NeedToken;
 import com.lfool.jwt.annotation.PassToken;
+import com.lfool.jwt.entity.Role;
 import com.lfool.jwt.entity.User;
 import com.lfool.jwt.response.CommonReturnType;
+import com.lfool.jwt.service.RoleService;
 import com.lfool.jwt.service.UserService;
 import com.lfool.jwt.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     @PostMapping("/login")
     public CommonReturnType login(@RequestBody User user) {
         User queryUser = userService.findUserById(user.getId());
@@ -33,13 +38,14 @@ public class LoginController {
         if (!queryUser.getPassword().equals(user.getPassword())) {
             return CommonReturnType.create("密码错误，请重新登陆！", "fail");
         }
-        String token = JwtUtil.createJwtToken(user);
+        Role role = roleService.getRoleByUserId(user.getId());
+        String token = JwtUtil.createJwtToken(user, role);
         Map<String, Object> response = new HashMap<>();
         response.put("token", token);
         return CommonReturnType.create(response);
     }
 
-    @NeedToken
+    @NeedToken(role = "root")
     @GetMapping("/getMessage")
     public CommonReturnType getMessage() {
         Map<String, Object> response = new HashMap<>();
