@@ -3,15 +3,15 @@
 
  Source Server         : mysql@5.7
  Source Server Type    : MySQL
- Source Server Version : 50743 (5.7.43)
+ Source Server Version : 50744 (5.7.44)
  Source Host           : localhost:3307
  Source Schema         : jwt
 
  Target Server Type    : MySQL
- Target Server Version : 50743 (5.7.43)
+ Target Server Version : 50744 (5.7.44)
  File Encoding         : 65001
 
- Date: 29/07/2023 01:04:07
+ Date: 25/11/2023 01:24:14
 */
 
 SET NAMES utf8mb4;
@@ -33,6 +33,24 @@ CREATE TABLE `role` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `role` (`id`, `user_id`, `role`) VALUES (1, 1, 1);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for role_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `role_detail`;
+CREATE TABLE `role_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
+  `url` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_detail
+-- ----------------------------
+BEGIN;
+INSERT INTO `role_detail` (`id`, `role_id`, `url`) VALUES (1, 1, '/acc/getMessage');
 COMMIT;
 
 -- ----------------------------

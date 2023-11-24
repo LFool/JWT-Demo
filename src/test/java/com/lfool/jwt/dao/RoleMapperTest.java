@@ -1,20 +1,20 @@
-package com.lfool.jwt.service.impl;
+package com.lfool.jwt.dao;
 
 import com.lfool.jwt.entity.Role;
-import com.lfool.jwt.service.RoleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class RoleServiceImplTest {
+import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+class RoleMapperTest {
     @Autowired
-    private RoleService roleService;
+    private RoleMapper roleMapper;
 
     @Test
-    public void test() {
-        Role role = roleService.getRoleByUserId(1);
+    void testSelectByPrimaryKey() {
+        Role role = roleMapper.selectByPrimaryKey(1);
         System.out.println(role);
     }
 }

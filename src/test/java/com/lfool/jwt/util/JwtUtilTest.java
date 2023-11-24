@@ -19,7 +19,7 @@ class JwtUtilTest {
     @Test
     public void test() {
         User user = new User(1, "zs", "123456");
-        Role role = new Role(1, 1, "root");
+        Role role = new Role(1, 1, 1);
 
         // 创建 jwt
         String token = JwtUtil.createJwtToken(user, role);

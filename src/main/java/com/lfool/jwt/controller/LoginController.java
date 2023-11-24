@@ -20,7 +20,6 @@ import java.util.Map;
  * @Date 2023/7/9 06:01
  **/
 @RestController
-@RequestMapping("/acc")
 public class LoginController {
 
     @Autowired
@@ -46,7 +45,7 @@ public class LoginController {
     }
 
     @NeedToken(role = "root")
-    @GetMapping("/getMessage")
+    @GetMapping("/acc/getMessage")
     public CommonReturnType getMessage() {
         Map<String, Object> response = new HashMap<>();
         response.put("msg", "hhhh");
@@ -54,7 +53,7 @@ public class LoginController {
     }
 
     @PassToken
-    @GetMapping("/get")
+    @GetMapping("/acc/get")
     public CommonReturnType get() {
         Map<String, Object> response = new HashMap<>();
         response.put("msg", "wwwww");
